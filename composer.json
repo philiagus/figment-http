@@ -1,0 +1,37 @@
+{
+  "name": "philiagus/figment-http",
+  "description": "PHP Figment Framework: HTTP processing",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "figment",
+    "http"
+  ],
+  "authors": [
+    {
+      "name": "Andreas Eicher",
+      "email": "philiagus@philiagus.de",
+      "role": "lead"
+    }
+  ],
+  "require": {
+    "php": ">=8.4",
+    "philiagus/parser": "v2.0.0-RC2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "phpspec/prophecy-phpunit": "*",
+    "ext-xdebug": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Philiagus\\Figment\\Http\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Philiagus\\Figment\\Http\\Test\\": "tests/"
+    }
+  }
+}
