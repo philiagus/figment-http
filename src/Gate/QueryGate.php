@@ -23,16 +23,12 @@ use Philiagus\Parser\Base\Subject;
 class QueryGate implements Gate
 {
 
-    #[InjectContextOptional('.statusCode')]
-    private int $httpResponseCode = 400;
-
     use ThrowableToResponseTrait;
-
-    public function buildErrorResponse(Request $request, ?\Throwable $throwable): Response
+    public function __construct(
+        #[InjectContextOptional('.statusCode')]
+        private readonly int $httpResponseCode = 400
+    )
     {
-        return $throwable ?
-            $this->throwableToResponse($request, $throwable, $this->httpResponseCode) :
-            $request->response(statusCode: $this->httpResponseCode);
     }
 
     public function apply(Request $request, Action $action, Gate\GateStack $stack): \Philiagus\Figment\Http\Contract\DTO\Response
@@ -53,5 +49,12 @@ class QueryGate implements Gate
         }
 
         return $stack->next($request, $action);
+    }
+
+    public function buildErrorResponse(Request $request, ?\Throwable $throwable): Response
+    {
+        return $throwable ?
+            $this->throwableToResponse($request, $throwable, $this->httpResponseCode) :
+            $request->response(statusCode: $this->httpResponseCode);
     }
 }

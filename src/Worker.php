@@ -21,13 +21,19 @@ use Philiagus\Figment\Http\Contract\Processor;
 class Worker
 {
 
-    /** @type InstanceList<Processor> */
-    #[InjectList('figment.http.processors', Processor::class)]
-    private InstanceList $processors;
+    /**
+     * @param InstanceList<Processor> $processors
+     */
+    public function __construct(
+        #[InjectList('figment.http.processors')]
+        private InstanceList $processors
+    )
+    {
+    }
 
     public function execute(Request $request): Response
     {
-        $stack = new Worker\ProcessorStack(...$this->processors);
+        $stack = new Worker\ProcessorStack(...$this->processors->traverseInstances(Processor::class));
         return $stack->next($request);
     }
 

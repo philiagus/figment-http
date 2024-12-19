@@ -18,11 +18,16 @@ use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\Filter;
 use Philiagus\Figment\Http\DTO\Response;
 use Philiagus\Parser\Base\Subject;
+use Philiagus\Parser\Exception\ParsingException;
 
 class GetFilter implements Filter
 {
-    #[InjectContextOptional('.statusCode')]
-    private int $httpStatusCode = 400;
+    public function __construct(
+        #[InjectContextOptional('.statusCode')]
+        private int $httpStatusCode = 400
+    )
+    {
+    }
 
     public function explainWhyNoContinue(Request $request): Response
     {
@@ -39,7 +44,7 @@ class GetFilter implements Filter
             $expected->parse(
                 Subject::default($request->getGet(), 'Request Get')
             );
-        } catch (\Throwable) {
+        } catch (ParsingException) {
             return false;
         }
 

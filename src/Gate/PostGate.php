@@ -22,11 +22,14 @@ use Philiagus\Parser\Base\Subject;
 
 class PostGate implements Gate
 {
-
-    #[InjectContextOptional('.statusCode')]
-    private int $httpResponseCode = 400;
-
     use ThrowableToResponseTrait;
+
+    public function __construct(
+        #[InjectContextOptional('.statusCode')]
+        private readonly int $httpResponseCode = 400
+    )
+    {
+    }
 
     public function apply(Request $request, Action $action, Gate\GateStack $stack): \Philiagus\Figment\Http\Contract\DTO\Response
     {

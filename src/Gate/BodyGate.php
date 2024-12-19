@@ -16,25 +16,20 @@ use Philiagus\Figment\Container\Attribute\InjectContextOptional;
 use Philiagus\Figment\Http\Contract\Action;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\Gate;
-use Philiagus\Figment\Http\Contract\HttpResponseBuilder;
 use Philiagus\Figment\Http\DTO\Response;
 use Philiagus\Figment\Http\ThrowableToResponseTrait;
 use Philiagus\Parser\Base\Subject;
-use Philiagus\Parser\Exception\ParsingException;
 
 class BodyGate implements Gate
 {
 
-    #[InjectContextOptional('.statusCode')]
-    private int $httpResponseCode = 400;
-
     use ThrowableToResponseTrait;
 
-    public function buildErrorResponse(Request $request, ?\Throwable $throwable): Response
+    public function __construct(
+        #[InjectContextOptional('.statusCode')]
+        private readonly int $httpResponseCode = 400
+    )
     {
-        return $throwable ?
-            $this->throwableToResponse($request, $throwable, $this->httpResponseCode) :
-            $request->response(statusCode: $this->httpResponseCode);
     }
 
     public function apply(Request $request, Action $action, Gate\GateStack $stack): \Philiagus\Figment\Http\Contract\DTO\Response
@@ -55,5 +50,12 @@ class BodyGate implements Gate
         }
 
         return $stack->next($request, $action);
+    }
+
+    public function buildErrorResponse(Request $request, ?\Throwable $throwable): Response
+    {
+        return $throwable ?
+            $this->throwableToResponse($request, $throwable, $this->httpResponseCode) :
+            $request->response(statusCode: $this->httpResponseCode);
     }
 }
