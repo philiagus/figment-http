@@ -26,8 +26,7 @@ class BodyGate implements Gate
     use ThrowableToResponseTrait;
 
     public function __construct(
-        #[InjectContextOptional('.statusCode')]
-        private readonly int $httpResponseCode = 400
+        protected readonly int $httpResponseCode = 400
     )
     {
     }

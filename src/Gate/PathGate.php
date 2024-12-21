@@ -26,8 +26,7 @@ class PathGate implements Gate
     use ThrowableToResponseTrait;
 
     public function __construct(
-        #[InjectContextOptional('.statusCode')]
-        private readonly int $httpResponseCode = 404
+        protected readonly int $httpResponseCode = 404
     )
     {
     }

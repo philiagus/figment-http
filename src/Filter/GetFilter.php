@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Filter;
 
-use Philiagus\Figment\Container\Attribute\InjectContextOptional;
 use Philiagus\Figment\Http\Contract\Action;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\Filter;
@@ -23,8 +22,7 @@ use Philiagus\Parser\Exception\ParsingException;
 class GetFilter implements Filter
 {
     public function __construct(
-        #[InjectContextOptional('.statusCode')]
-        private int $httpStatusCode = 400
+        protected readonly int $httpStatusCode = 400
     )
     {
     }

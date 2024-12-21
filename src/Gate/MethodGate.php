@@ -26,8 +26,7 @@ class MethodGate implements Gate
     use ThrowableToResponseTrait;
 
     public function __construct(
-        #[InjectContextOptional('.statusCode')]
-        private readonly int $httpResponseCode = 405
+        protected readonly int $httpResponseCode = 405
     )
     {
     }

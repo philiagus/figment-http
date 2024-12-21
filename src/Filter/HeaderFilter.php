@@ -23,8 +23,7 @@ use Philiagus\Parser\Exception\ParsingException;
 class HeaderFilter implements Filter
 {
     public function __construct(
-        #[InjectContextOptional('.statusCode')]
-        private int $httpStatusCode = 400
+        protected readonly int $httpStatusCode = 400
     )
     {
     }

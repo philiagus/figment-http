@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Philiagus\Figment\Http\Processor;
 
 use Philiagus\Figment\Container\Attribute\InjectList;
-use Philiagus\Figment\Container\Contract\List\InstanceList;
+use Philiagus\Figment\Container\Contract\InstanceList;
 use Philiagus\Figment\Http\Contract;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\DTO\Response;

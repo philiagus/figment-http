@@ -13,10 +13,10 @@ declare(strict_types=1);
 namespace Philiagus\Figment\Http;
 
 use Philiagus\Figment\Container\Attribute\InjectList;
-use Philiagus\Figment\Container\Contract\List\InstanceList;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\DTO\Response;
 use Philiagus\Figment\Http\Contract\Processor;
+use Philiagus\Figment\Container\Contract\InstanceList;
 
 class Worker
 {
