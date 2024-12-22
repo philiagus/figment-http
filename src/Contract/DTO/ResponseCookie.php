@@ -15,11 +15,17 @@ namespace Philiagus\Figment\Http\Contract\DTO;
 interface ResponseCookie
 {
     public function getName(): string;
+
     public function getValue(): string;
+
     public function getExpiresAt(): ?int;
+
     public function getPath(): string;
+
     public function getDomain(): string;
+
     public function isSecure(): bool;
+
     public function isHttpOnly(): bool;
 
     public function send(): void;

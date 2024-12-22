@@ -17,10 +17,15 @@ use Philiagus\Figment\Http\DTO\Response;
 
 interface ProcessorStack
 {
-    public function next(Request $request): Response;
 
-    public function isLast(): bool;
-    public function hasNext(): bool;
+    public bool $isLast {
+        get;
+    }
+    public bool $hasNext {
+        get;
+    }
+
+    public function next(Request $request): Response;
 
     public function __invoke(Request $request): Response;
 }

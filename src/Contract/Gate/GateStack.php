@@ -18,8 +18,14 @@ use Philiagus\Figment\Http\DTO\Response;
 
 interface GateStack
 {
+    public bool $isLast {
+        get;
+    }
+    public bool $hasNext {
+        get;
+    }
+
     public function next(Request $request, Action $action): Response;
-    public function isLast(): bool;
-    public function hasNext(): bool;
+
     public function __invoke(Request $request, Action $action): Response;
 }

@@ -14,7 +14,8 @@ namespace Philiagus\Figment\Http\Contract\Action;
 
 use Philiagus\Parser\Contract\Parser;
 
-interface GetAware {
+interface GetAware
+{
 
     public function expectedGet(): Parser;
 

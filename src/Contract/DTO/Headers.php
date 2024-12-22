@@ -16,6 +16,7 @@ interface Headers
 {
 
     public function has(string $name): bool;
+
     public function getRaw(string $name): string;
 
     public function empty(): bool;

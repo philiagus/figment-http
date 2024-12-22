@@ -14,7 +14,8 @@ namespace Philiagus\Figment\Http\Contract\Action;
 
 use Philiagus\Parser\Contract\Parser;
 
-interface MethodAware {
+interface MethodAware
+{
 
     public function expectedMethod(): string|Parser;
 

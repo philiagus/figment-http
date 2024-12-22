@@ -15,7 +15,8 @@ namespace Philiagus\Figment\Http\Contract;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\DTO\Response;
 
-interface Worker {
+interface Worker
+{
 
     public function work(Request $request): Response;
 

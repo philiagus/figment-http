@@ -18,6 +18,12 @@ use Philiagus\Figment\Http\DTO\Response;
 
 class ProcessorStack implements Contract\Processor\ProcessorStack
 {
+    public bool $isLast {
+        get => $this->pointer === $this->max;
+    }
+    public bool $hasNext {
+        get => $this->pointer !== $this->max;
+    }
     /** @var Contract\Processor[] */
     private array $processors;
     private int $pointer = 0;
@@ -29,6 +35,11 @@ class ProcessorStack implements Contract\Processor\ProcessorStack
         $this->max = array_key_last($processors);
     }
 
+    public function __invoke(Request $request): Response
+    {
+        return $this->next($request);
+    }
+
     public function next(Request $request): Response
     {
         $this->pointer++;
@@ -37,20 +48,5 @@ class ProcessorStack implements Contract\Processor\ProcessorStack
         } finally {
             $this->pointer--;
         }
-    }
-
-    public function isLast(): bool
-    {
-        return $this->pointer === $this->max;
-    }
-
-    public function hasNext(): bool
-    {
-        return $this->pointer !== $this->max;
-    }
-
-    public function __invoke(Request $request): Response
-    {
-        return $this->next($request);
     }
 }

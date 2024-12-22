@@ -17,10 +17,10 @@ use Philiagus\Parser\Base\Parser;
 use Philiagus\Parser\Base\Parser\ResultBuilder;
 use Philiagus\Parser\Base\Subject;
 use Philiagus\Parser\Contract\Parser as ParserContract;
-use Philiagus\Parser\Parser\Parse\ParseArray;
 use Philiagus\Parser\Result;
 
-class AssertRequestCookies extends Parser {
+class AssertRequestCookies extends Parser
+{
 
     /** @var array<array{string, bool, ?string, ParserContract}> */
     private array $cookies = [];
@@ -50,16 +50,16 @@ class AssertRequestCookies extends Parser {
     {
         $cookies = $builder->getValue();
 
-        if(!$cookies instanceof RequestCookies) {
+        if (!$cookies instanceof RequestCookies) {
             $builder->logErrorStringify("Parser expected object of type Cookies, but got {value.type} instead");
             return $builder->createResultUnchanged();
         }
 
-        foreach($this->cookies as [$name, $optional, $default, $parser]) {
-            if($cookies->has($name)) {
+        foreach ($this->cookies as [$name, $optional, $default, $parser]) {
+            if ($cookies->has($name)) {
                 $cookieValue = $cookies->get($name);
-            } elseif($optional) {
-                if($default === null)
+            } elseif ($optional) {
+                if ($default === null)
                     continue;
                 $cookieValue = $default;
             } else {

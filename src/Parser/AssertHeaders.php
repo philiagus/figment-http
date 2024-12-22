@@ -16,11 +16,9 @@ use Philiagus\Figment\Http\Contract\DTO\Headers;
 use Philiagus\Parser\Base\Parser;
 use Philiagus\Parser\Base\Parser\ResultBuilder;
 use Philiagus\Parser\Base\Subject;
-use Philiagus\Parser\Error;
 use Philiagus\Parser\Exception\ParsingException;
 use Philiagus\Parser\Result;
 use Philiagus\Parser\Subject\PropertyValue;
-use Philiagus\Parser\Util\Stringify;
 
 class AssertHeaders extends Parser
 {
@@ -73,7 +71,7 @@ class AssertHeaders extends Parser
                 $result = $parser->parse(
                     new PropertyValue($builder->getSubject(), $name, $headerValue)
                 );
-                if($result->hasErrors()) {
+                if ($result->hasErrors()) {
                     $builder->logError(
                         new HttpResponseError(
                             $subject,

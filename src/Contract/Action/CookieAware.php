@@ -14,7 +14,8 @@ namespace Philiagus\Figment\Http\Contract\Action;
 
 use Philiagus\Parser\Contract\Parser;
 
-interface CookieAware {
+interface CookieAware
+{
 
     public function expectedCookies(): Parser;
 

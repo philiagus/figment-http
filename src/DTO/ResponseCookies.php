@@ -25,7 +25,7 @@ readonly class ResponseCookies implements Contract\DTO\ResponseCookies, \Iterato
     )
     {
         $cleanCookies = [];
-        foreach($cookies as $cookie) {
+        foreach ($cookies as $cookie) {
             $cleanCookies[$cookie->getName()] = $cookie;
         }
         $this->cookies = $cleanCookies;

@@ -57,15 +57,15 @@ readonly class Headers implements Contract\DTO\Headers
         return isset($this->normalizedHeaders[strtolower($name)]);
     }
 
+    public function get(string $name): Contract\DTO\Header
+    {
+        return HeaderFactory::create($name, $this->getRaw($name));
+    }
+
     public function getRaw(string $name): string
     {
         return $this->normalizedHeaders[strtolower($name)] ??
             throw new \OutOfBoundsException("Header {$this->humanize($name)} does not exist");
-    }
-
-    public function get(string $name): Contract\DTO\Header
-    {
-        return HeaderFactory::create($name, $this->getRaw($name));
     }
 
     public function empty(): bool

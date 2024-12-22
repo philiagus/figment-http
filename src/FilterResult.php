@@ -12,7 +12,8 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http;
 
-enum FilterResult {
+enum FilterResult
+{
 
     case ABORT;
     case CONTINUE;

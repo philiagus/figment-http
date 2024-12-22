@@ -16,7 +16,8 @@ namespace Philiagus\Figment\Http\Contract;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\DTO\Response;
 
-interface Gate {
+interface Gate
+{
 
     public function apply(Request $request, Action $action, Gate\GateStack $stack): Response;
 

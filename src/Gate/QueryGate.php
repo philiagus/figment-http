@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Gate;
 
-use Philiagus\Figment\Container\Attribute\InjectContextOptional;
 use Philiagus\Figment\Http\Contract\Action;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\Gate;
@@ -24,6 +23,7 @@ class QueryGate implements Gate
 {
 
     use ThrowableToResponseTrait;
+
     public function __construct(
         protected readonly int $httpResponseCode = 400
     )

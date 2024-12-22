@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Contract\DTO;
 
-interface File {
+interface File
+{
 
 }

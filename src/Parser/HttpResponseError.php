@@ -22,13 +22,13 @@ readonly class HttpResponseError extends Error implements Contract\HttpResponseB
 {
 
     public function __construct(
-        Subject $subject,
-        string $message,
-        private int $httpStatusCode,
+        Subject         $subject,
+        string          $message,
+        private int     $httpStatusCode,
         private ?string $httpStatusDescription = null,
-        private string $responseBody = '',
-        ?\Throwable $sourceThrowable = null,
-        array $sourceErrors = []
+        private string  $responseBody = '',
+        ?\Throwable     $sourceThrowable = null,
+        array           $sourceErrors = []
     )
     {
         parent::__construct($subject, $message, $sourceThrowable, $sourceErrors);

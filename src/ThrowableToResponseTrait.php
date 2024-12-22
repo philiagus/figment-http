@@ -17,15 +17,16 @@ use Philiagus\Figment\Http\Contract\DTO\Response;
 use Philiagus\Figment\Http\Contract\HttpResponseBuilder;
 use Philiagus\Parser\Exception\ParsingException;
 
-trait ThrowableToResponseTrait {
+trait ThrowableToResponseTrait
+{
 
     protected function throwableToResponse(Request $request, \Throwable $exception, int $fallbackHttpStatusCode): Response
     {
-        if($exception instanceof HttpResponseBuilder) {
+        if ($exception instanceof HttpResponseBuilder) {
             return $exception->getHttpResponse($request);
-        } elseif($exception instanceof ParsingException) {
+        } elseif ($exception instanceof ParsingException) {
             $error = $exception->getError();
-            if($error instanceof HttpResponseBuilder) {
+            if ($error instanceof HttpResponseBuilder) {
                 return $error->getHttpResponse($request);
             }
         }

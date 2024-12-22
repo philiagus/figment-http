@@ -12,24 +12,34 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Contract\DTO;
 
-interface Request {
+interface Request
+{
 
     public function getProtocol(): string;
+
     public function getMethod(): string;
+
     public function getPath(): string;
 
     public function getPost(): array;
+
     public function getGet(): array;
+
     public function getQuery(): string;
+
     public function getBody(): string;
+
     public function getHeaders(): Headers;
+
     public function getFiles(): Files;
+
     public function getCookies(): RequestCookies;
+
     public function getTime(): \DateTimeImmutable;
 
     public function response(
-        int $statusCode = 200,
-        string $body = '',
+        int     $statusCode = 200,
+        string  $body = '',
         ?string $statusCodeDescription = null
     ): Response;
 

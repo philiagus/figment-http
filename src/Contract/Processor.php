@@ -15,7 +15,8 @@ namespace Philiagus\Figment\Http\Contract;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\DTO\Response;
 
-interface Processor {
+interface Processor
+{
 
     public function process(Request $request, Processor\ProcessorStack $stack): Response;
 

@@ -15,5 +15,6 @@ namespace Philiagus\Figment\Http\Contract\DTO;
 interface RequestCookies
 {
     public function has(string $name): bool;
+
     public function get(string $name): string;
 }

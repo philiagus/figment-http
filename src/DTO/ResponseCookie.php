@@ -20,7 +20,7 @@ readonly class ResponseCookie implements Contract\DTO\ResponseCookie
     public function __construct(
         private string $name,
         private string $value,
-        private ?int    $expiresAt = null,
+        private ?int   $expiresAt = null,
         private string $path = '',
         private string $domain = '',
         private bool   $secure = false,

@@ -14,7 +14,8 @@ namespace Philiagus\Figment\Http\Contract\Action;
 
 use Philiagus\Parser\Contract\Parser;
 
-interface PostAware {
+interface PostAware
+{
 
     public function expectedPost(): Parser;
 

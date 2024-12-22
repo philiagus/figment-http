@@ -16,7 +16,8 @@ use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\DTO\Response;
 use Philiagus\Figment\Http\Contract\Processor;
 
-class SendResponse implements Processor {
+class SendResponse implements Processor
+{
 
     public function process(Request $request, Processor\ProcessorStack $stack): Response
     {

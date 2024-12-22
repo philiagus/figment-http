@@ -14,7 +14,8 @@ namespace Philiagus\Figment\Http\Contract\Action;
 
 use Philiagus\Parser\Contract\Parser;
 
-interface BodyAware {
+interface BodyAware
+{
 
     public function expectedBody(): string|Parser;
 

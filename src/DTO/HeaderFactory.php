@@ -19,7 +19,7 @@ class HeaderFactory
 
     public static function create(string $name, string $content): Contract\DTO\Header
     {
-        return match(strtolower($name)) {
+        return match (strtolower($name)) {
             default => new Header\General($name, $content)
         };
     }

@@ -14,7 +14,8 @@ namespace Philiagus\Figment\Http\Contract\Action;
 
 use Philiagus\Parser\Contract\Parser;
 
-interface PathAware {
+interface PathAware
+{
 
     public function expectedPath(): string|Parser;
 

@@ -14,7 +14,8 @@ namespace Philiagus\Figment\Http\Contract\Action;
 
 use Philiagus\Parser\Contract\Parser;
 
-interface QueryAware {
+interface QueryAware
+{
 
     public function expectedQuery(): string|Parser;
 

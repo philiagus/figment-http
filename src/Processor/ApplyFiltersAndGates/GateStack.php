@@ -19,9 +19,15 @@ use Philiagus\Figment\Http\DTO\Response;
 
 class GateStack implements Contract\Gate\GateStack
 {
-    /** @var Contract\Gate[]  */
-    private array $gates;
+    public bool $isLast {
+        get => $this->pointer === $this->max;
+    }
 
+    public bool $hasNext {
+        get => $this->pointer !== $this->max;
+    }
+    /** @var Contract\Gate[] */
+    private array $gates;
     private int $pointer = 0;
     private int $max;
 
@@ -33,32 +39,21 @@ class GateStack implements Contract\Gate\GateStack
         $this->max = array_key_last($this->gates);
     }
 
+    public function __invoke(Request $request, Action $action): Response
+    {
+        return $this->next($request, $action);
+    }
+
     public function next(Request $request, Action $action): Response
     {
-        if($this->pointer === $this->max) {
+        if ($this->isLast) {
             return $action->execute($request);
         }
-
         $this->pointer++;
         try {
             return $this->gates[$this->pointer]->apply($request, $action, $this);
         } finally {
             $this->pointer--;
         }
-    }
-
-    public function isLast(): bool
-    {
-        return $this->pointer === $this->max;
-    }
-
-    public function hasNext(): bool
-    {
-        return $this->pointer !== $this->max;
-    }
-
-    public function __invoke(Request $request, Action $action): Response
-    {
-        return $this->next($request, $action);
     }
 }
