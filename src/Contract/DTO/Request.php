@@ -38,9 +38,11 @@ interface Request
     public function getTime(): \DateTimeImmutable;
 
     public function response(
-        int     $statusCode = 200,
-        string  $body = '',
-        ?string $statusCodeDescription = null
+        int $statusCode = 200,
+        string $body = '',
+        ?string $statusCodeDescription = null,
+        array|Headers $headers = new \Philiagus\Figment\Http\DTO\Headers(),
+        ResponseCookies $cookies = new \Philiagus\Figment\Http\DTO\ResponseCookies()
     ): Response;
 
 }

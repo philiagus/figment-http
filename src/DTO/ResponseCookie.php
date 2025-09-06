@@ -20,11 +20,11 @@ readonly class ResponseCookie implements Contract\DTO\ResponseCookie
     public function __construct(
         private string $name,
         private string $value,
-        private ?int   $expiresAt = null,
-        private string $path = '',
+        private true|\DateTimeImmutable $expiresAt,
+        private string $path = '/',
         private string $domain = '',
-        private bool   $secure = false,
-        private bool   $httpOnly = true,
+        private bool $secure = false,
+        private bool $httpOnly = true,
     )
     {
     }
@@ -39,7 +39,7 @@ readonly class ResponseCookie implements Contract\DTO\ResponseCookie
         return $this->value;
     }
 
-    public function getExpiresAt(): ?int
+    public function getExpiresAt(): true|\DateTimeImmutable
     {
         return $this->expiresAt;
     }
@@ -67,7 +67,8 @@ readonly class ResponseCookie implements Contract\DTO\ResponseCookie
     public function send(): void
     {
         setcookie(
-            $this->name, $this->value, $this->expiresAt,
+            $this->name, $this->value,
+            $this->expiresAt === true ? -1 : $this->expiresAt->getTimestamp(),
             $this->path, $this->domain,
             $this->secure, $this->httpOnly
         );

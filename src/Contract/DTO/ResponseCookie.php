@@ -18,7 +18,7 @@ interface ResponseCookie
 
     public function getValue(): string;
 
-    public function getExpiresAt(): ?int;
+    public function getExpiresAt(): true|\DateTimeImmutable;
 
     public function getPath(): string;
 

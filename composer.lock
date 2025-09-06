@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f896fe43e1cf207d7ddcd4582e32edd",
+    "content-hash": "f9b33a833c7d5c1fad917aaa7267d9d2",
     "packages": [
         {
             "name": "philiagus/parser",
-            "version": "v2.0.0-RC2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/philiagus/parser.git",
-                "reference": "d8ca2351b9bc4ddd313b15c39e5d89c49417ec89"
+                "reference": "492f12f69970d38cbc2ad912bb8a9292405e8ab4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/philiagus/parser/zipball/d8ca2351b9bc4ddd313b15c39e5d89c49417ec89",
-                "reference": "d8ca2351b9bc4ddd313b15c39e5d89c49417ec89",
+                "url": "https://api.github.com/repos/philiagus/parser/zipball/492f12f69970d38cbc2ad912bb8a9292405e8ab4",
+                "reference": "492f12f69970d38cbc2ad912bb8a9292405e8ab4",
                 "shasum": ""
             },
             "require": {
@@ -31,6 +31,7 @@
                 "phpspec/prophecy-phpunit": "*",
                 "phpunit/phpunit": "*"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -56,9 +57,9 @@
             ],
             "support": {
                 "issues": "https://github.com/philiagus/parser/issues",
-                "source": "https://github.com/philiagus/parser/tree/v2.0.0-RC2"
+                "source": "https://github.com/philiagus/parser/tree/master"
             },
-            "time": "2024-12-01T13:55:11+00:00"
+            "time": "2025-07-28T18:27:33+00:00"
         }
     ],
     "packages-dev": [
@@ -2271,7 +2272,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "philiagus/parser": 5
+        "philiagus/parser": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

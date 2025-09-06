@@ -28,7 +28,7 @@ class GateStack implements Contract\Gate\GateStack
     }
     /** @var Contract\Gate[] */
     private array $gates;
-    private int $pointer = 0;
+    private int $pointer = -1;
     private int $max;
 
     public function __construct(

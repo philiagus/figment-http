@@ -21,12 +21,14 @@ class ProcessorStack implements Contract\Processor\ProcessorStack
     public bool $isLast {
         get => $this->pointer === $this->max;
     }
+
     public bool $hasNext {
         get => $this->pointer !== $this->max;
     }
+
     /** @var Contract\Processor[] */
     private array $processors;
-    private int $pointer = 0;
+    private int $pointer = -1;
     private int $max;
 
     public function __construct(Contract\Processor ...$processors)

@@ -37,11 +37,16 @@ readonly class ResponseCookies implements Contract\DTO\ResponseCookies, \Iterato
             $cookie->send();
     }
 
-    public function merge(array|Contract\DTO\ResponseCookies $cookies): Contract\DTO\ResponseCookies
+    public function merge(Contract\DTO\ResponseCookies $cookies): Contract\DTO\ResponseCookies
     {
         $newCookies = $cookies instanceof Contract\DTO\ResponseCookies ? $cookies->all() : $cookies;
-        $newCookies = $newCookies + $this->cookies;
-        return new self(...$this->cookies, ...$newCookies);
+        $newCookies = $this->cookies + $newCookies;
+        return new self(...$newCookies);
+    }
+
+    public function has(string $name): bool
+    {
+        return isset($this->cookies[$name]);
     }
 
     public function all(): array

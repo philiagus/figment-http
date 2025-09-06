@@ -85,11 +85,11 @@ readonly class Response implements Contract\DTO\Response
     private ?string $statusDescription;
 
     public function __construct(
-        public \Philiagus\Figment\Http\Contract\DTO\Request         $request,
-        public int                                                  $statusCode = 204,
-        ?string                                                     $statusDescription = null,
-        public string                                               $body = '',
-        array|\Philiagus\Figment\Http\Contract\DTO\Headers          $headers = new Headers(),
+        public \Philiagus\Figment\Http\Contract\DTO\Request $request,
+        public int $statusCode = 204,
+        ?string $statusDescription = null,
+        public string $body = '',
+        array|\Philiagus\Figment\Http\Contract\DTO\Headers $headers = new Headers(),
         public \Philiagus\Figment\Http\Contract\DTO\ResponseCookies $cookies = new ResponseCookies()
     )
     {
@@ -179,7 +179,7 @@ readonly class Response implements Contract\DTO\Response
     {
         $description = $this->statusDescription ?? self::STATUS_DESCRIPTIONS[$this->statusCode] ?? '';
         header($this->request->getProtocol() . " " . $this->statusCode . " " . $description);
-        foreach ($this->headers as $name => $value) {
+        foreach ($this->headers->all() as $name => $value) {
             header("$name: $value");
         }
         $this->cookies->send();

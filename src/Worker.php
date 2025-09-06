@@ -31,7 +31,7 @@ readonly class Worker
     {
     }
 
-    public function execute(Request $request): Response
+    public function work(Request $request): Response
     {
         $stack = new Worker\ProcessorStack(...$this->processors->traverseInstances(Processor::class));
         return $stack->next($request);

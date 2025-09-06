@@ -30,7 +30,7 @@ readonly class ApplyFiltersAndGates implements Contract\Processor
     public function __construct(
         #[Instance('figment.http.actions')] private InstanceList $actions,
         #[Instance('figment.http.filters')] private InstanceList $filters = new EmptyInstanceList(),
-        #[Instance('figment.http.gates')] private InstanceList   $gates = new EmptyInstanceList()
+        #[Instance('figment.http.gates')] private InstanceList $gates = new EmptyInstanceList()
     )
     {
     }

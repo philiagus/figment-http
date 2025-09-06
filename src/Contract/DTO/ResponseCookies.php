@@ -20,7 +20,9 @@ interface ResponseCookies extends \Traversable
 
     public function send(): void;
 
-    public function merge(array|ResponseCookies $cookies): ResponseCookies;
+    public function merge(ResponseCookies $cookies): ResponseCookies;
+
+    public function has(string $name): bool;
 
     /**
      * @return ResponseCookie[]

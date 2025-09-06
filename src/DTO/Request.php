@@ -13,46 +13,58 @@ declare(strict_types=1);
 namespace Philiagus\Figment\Http\DTO;
 
 use Philiagus\Figment\Http\Contract;
+use Philiagus\Figment\Http\Contract\DTO\ResponseCookies;
 
 readonly class Request implements Contract\DTO\Request
 {
 
     public function __construct(
-        public float                       $time,
-        public string                      $protocol,
-        public bool                        $https,
-        public string                      $method,
-        public string                      $path,
-        public string                      $query,
-        public string                      $body,
-        public ?string                     $authUser,
-        public ?string                     $authPassword,
-        public Contract\DTO\Headers        $headers,
-        public Contract\DTO\Files          $files,
+        public float $time,
+        public string $protocol,
+        public bool $https,
+        public string $method,
+        public string $path,
+        public string $query,
+        public string $body,
+        public ?string $authUser,
+        public ?string $authPassword,
+        public Contract\DTO\Headers $headers,
+        public Contract\DTO\Files $files,
         public Contract\DTO\RequestCookies $cookies,
-        public array                       $post,
-        public array                       $get
+        public array $post,
+        public array $get
     )
     {
 
     }
 
-    public static function fromGlobals(array $server, array $post, array $get, array $files, array $cookies): self
+    public static function fromGlobals(
+        ?array $server = null,
+        ?array $post = null,
+        ?array $get = null,
+        ?array $files = null,
+        ?array $cookie = null
+    ): self
     {
+        $server ??= $_SERVER;
+        $post ??= $_POST;
+        $get ??= $_GET;
+        $files ??= $_FILES;
+        $cookie ??= $_COOKIE;
         $parts = parse_url($_SERVER['REQUEST_URI']);
         return new self(
             $_SERVER['REQUEST_TIME_FLOAT'],
             $_SERVER['SERVER_PROTOCOL'],
             !empty($_SERVER['HTTPS']),
             $_SERVER['REQUEST_METHOD'],
-            $parts['path'] ?? '',
+            $parts['path'] ?? '/',
             $parts['query'] ?? '',
             file_get_contents('php://input'),
             $_SERVER['PHP_AUTH_USER'] ?? null,
             $_SERVER['PHP_AUTH_PW'] ?? null,
             Headers::fromGlobal($server),
             Files::fromGlobal($files),
-            RequestCookies::fromGlobal($cookies),
+            RequestCookies::fromGlobal($cookie),
             $post,
             $get
         );
@@ -100,16 +112,20 @@ readonly class Request implements Contract\DTO\Request
     }
 
     public function response(
-        int     $statusCode = 200,
-        string  $body = '',
-        ?string $statusCodeDescription = null
+        int $statusCode = 200,
+        string $body = '',
+        ?string $statusCodeDescription = null,
+        array|Contract\DTO\Headers $headers = new Headers(),
+        ResponseCookies $cookies = new \Philiagus\Figment\Http\DTO\ResponseCookies()
     ): \Philiagus\Figment\Http\Contract\DTO\Response
     {
         return new Response(
             $this,
             $statusCode,
             $statusCodeDescription,
-            $body
+            $body,
+            $headers,
+            $cookies
         );
     }
 

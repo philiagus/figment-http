@@ -20,7 +20,11 @@ use Philiagus\Parser\Exception\ParsingException;
 trait ThrowableToResponseTrait
 {
 
-    protected function throwableToResponse(Request $request, \Throwable $exception, int $fallbackHttpStatusCode): Response
+    protected function throwableToResponse(
+        Request $request,
+        \Throwable $exception,
+        int $fallbackHttpStatusCode
+    ): Response
     {
         if ($exception instanceof HttpResponseBuilder) {
             return $exception->getHttpResponse($request);
