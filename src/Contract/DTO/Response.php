@@ -27,4 +27,12 @@ interface Response
     public function getBody(): string;
 
     public function send(): self;
+
+    public function with(
+        null|int $statusCode = null,
+        null|string $statusDescription = null,
+        null|string $body = null,
+        null|Headers $headers = null,
+        null|ResponseCookies $responseCookies = null
+    ): self;
 }

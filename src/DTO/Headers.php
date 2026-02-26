@@ -76,23 +76,20 @@ readonly class Headers implements Contract\DTO\Headers
     public function merge(array|Contract\DTO\Headers $headers): Contract\DTO\Headers
     {
         if (empty($this->headers)) {
-            if ($headers instanceof self) {
-                return $headers;
-            }
-            return new self($headers);
+            return $headers instanceof self ? $headers : new self($headers);
         }
-        $headers = $headers instanceof Contract\DTO\Headers ? $headers->all() : $headers;
-        $newHeaders = $this->headers;
+        $newHeaders = $headers instanceof Contract\DTO\Headers ? $headers->all() : $headers;
+        $mergedHeaders = $this->headers;
         foreach ($newHeaders as $newName => $newValue) {
-            foreach ($headers as $oldName => $oldValue) {
+            foreach ($mergedHeaders as $oldName => $oldValue) {
                 if (strcasecmp($newName, $oldName) === 0) {
-                    $newHeaders[$oldName] = $newValue;
+                    $mergedHeaders[$oldName] = $newValue;
                     continue 2;
                 }
             }
-            $newHeaders[$newName] = $newValue;
+            $mergedHeaders[$newName] = $newValue;
         }
-        return new self($newHeaders);
+        return new self($mergedHeaders);
     }
 
     public function all(): array

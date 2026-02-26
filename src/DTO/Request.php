@@ -43,7 +43,8 @@ readonly class Request implements Contract\DTO\Request
         ?array $post = null,
         ?array $get = null,
         ?array $files = null,
-        ?array $cookie = null
+        ?array $cookie = null,
+        null|array|Contract\DTO\Headers $headers = null
     ): self
     {
         $server ??= $_SERVER;
@@ -52,6 +53,11 @@ readonly class Request implements Contract\DTO\Request
         $files ??= $_FILES;
         $cookie ??= $_COOKIE;
         $parts = parse_url($_SERVER['REQUEST_URI']);
+        if($headers === null) {
+            $headers = Headers::fromGlobal($server);
+        } elseif(is_array($headers)) {
+            $headers = new Headers($headers);
+        }
         return new self(
             $_SERVER['REQUEST_TIME_FLOAT'],
             $_SERVER['SERVER_PROTOCOL'],
@@ -62,7 +68,7 @@ readonly class Request implements Contract\DTO\Request
             file_get_contents('php://input'),
             $_SERVER['PHP_AUTH_USER'] ?? null,
             $_SERVER['PHP_AUTH_PW'] ?? null,
-            Headers::fromGlobal($server),
+            $headers,
             Files::fromGlobal($files),
             RequestCookies::fromGlobal($cookie),
             $post,

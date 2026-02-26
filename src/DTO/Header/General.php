@@ -14,27 +14,14 @@ namespace Philiagus\Figment\Http\DTO\Header;
 
 use Philiagus\Figment\Http\Contract\DTO\Header;
 
-class General implements Header
+readonly class General implements Header
 {
 
     /**
      * @param string $name
-     * @param string $content
+     * @param string $raw
      */
-    public function __construct(
-        private readonly string $name,
-        private readonly string $content
-    )
+    public function __construct(public string $name, public string $raw)
     {
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getRawValue(): string
-    {
-        return $this->content;
     }
 }

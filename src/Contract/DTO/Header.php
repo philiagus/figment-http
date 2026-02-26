@@ -14,8 +14,12 @@ namespace Philiagus\Figment\Http\Contract\DTO;
 
 interface Header
 {
-    public function getName(): string;
+    public string $name {
+        get;
+    }
 
-    public function getRawValue(): string;
+    public string $raw {
+        get;
+    }
 
 }

@@ -102,54 +102,6 @@ readonly class Response implements Contract\DTO\Response
         return $this->request;
     }
 
-    public function withStatus(int $status, ?string $description): self
-    {
-        return new self(
-            $this->request,
-            $status,
-            $description,
-            $this->body,
-            $this->headers,
-            $this->cookies
-        );
-    }
-
-    public function withBody(string $body): self
-    {
-        return new self(
-            $this->request,
-            $this->statusCode,
-            $this->statusDescription,
-            $body,
-            $this->headers,
-            $this->cookies
-        );
-    }
-
-    public function withHeaders(array|\Philiagus\Figment\Http\Contract\DTO\Headers $headers): self
-    {
-        return new self(
-            $this->request,
-            $this->statusCode,
-            $this->statusDescription,
-            $this->body,
-            $this->headers->merge($headers),
-            $this->cookies
-        );
-    }
-
-    public function withCookies(array|\Philiagus\Figment\Http\Contract\DTO\ResponseCookies $cookies): self
-    {
-        return new self(
-            $this->request,
-            $this->statusCode,
-            $this->statusDescription,
-            $this->body,
-            $this->headers,
-            $this->cookies->merge($cookies)
-        );
-    }
-
     public function getStatusCode(): int
     {
         return $this->statusCode;
@@ -186,5 +138,23 @@ readonly class Response implements Contract\DTO\Response
         echo $this->body;
 
         return $this;
+    }
+
+    public function with(
+        ?int $statusCode = null,
+        ?string $statusDescription = null,
+        ?string $body = null,
+        ?Contract\DTO\Headers $headers = null,
+        ?Contract\DTO\ResponseCookies $responseCookies = null
+    ): Contract\DTO\Response
+    {
+        return new self(
+            $this->request,
+            $statusCode ?? $this->statusCode,
+            $statusDescription ?? $this->statusDescription,
+            $body ?? $this->body,
+            $headers ?? $this->headers,
+            $responseCookies ?? $this->cookies
+        );
     }
 }

@@ -13,14 +13,18 @@ declare(strict_types=1);
 namespace Philiagus\Figment\Http\DTO;
 
 use Philiagus\Figment\Http\Contract;
+use Philiagus\Figment\Http\DTO\Header\Authorization;
 
 class HeaderFactory
 {
 
-    public static function create(string $name, string $content): Contract\DTO\Header
+    public static function create(string $name, string $raw): Contract\DTO\Header
     {
         return match (strtolower($name)) {
-            default => new Header\General($name, $content)
+            'authorization' => Authorization::infer($name, $raw),
+            'if-unmodified-since', 'if-modified-since' => new Header\DateTime($name, $raw),
+
+            default => new Header\General($name, $raw)
         };
     }
 }
