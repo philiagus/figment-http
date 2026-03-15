@@ -12,9 +12,10 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Contract\Action;
 
+use Philiagus\Figment\Http\Contract\Action;
 use Philiagus\Parser\Contract\Parser;
 
-interface GetAware
+interface GetAware extends Action
 {
 
     public function expectedGet(): Parser;

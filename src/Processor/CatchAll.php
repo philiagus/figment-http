@@ -35,7 +35,7 @@ class CatchAll implements Processor
                 }
             }
 
-            return $request->response(statusCode: 500, body: (string)$exception);
+            return $request->response(statusCode: 500, body: (string)$exception, headers: ['Content-Type' => 'text/plain']);
         }
     }
 }

@@ -12,9 +12,10 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Contract\Action;
 
+use Philiagus\Figment\Http\Contract\Action;
 use Philiagus\Parser\Contract\Parser;
 
-interface CookieAware
+interface CookieAware extends Action
 {
 
     public function expectedCookies(): Parser;

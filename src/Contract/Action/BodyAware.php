@@ -12,9 +12,10 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Contract\Action;
 
+use Philiagus\Figment\Http\Contract\Action;
 use Philiagus\Parser\Contract\Parser;
 
-interface BodyAware
+interface BodyAware extends Action
 {
 
     public function expectedBody(): string|Parser;

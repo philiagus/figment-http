@@ -12,9 +12,10 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Contract\Action;
 
+use Philiagus\Figment\Http\Contract\Action;
 use Philiagus\Parser\Contract\Parser;
 
-interface HeaderAware
+interface HeaderAware extends Action
 {
 
     public function expectedHeader(): Parser;
