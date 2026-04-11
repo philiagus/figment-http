@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http;
 
-use Philiagus\Figment\Container\Attribute\Instance;
+use Philiagus\Figment\Container\Attribute\Inject;
 use Philiagus\Figment\Container\Contract\InstanceList;
 use Philiagus\Figment\Http\Contract\DTO\Request;
 use Philiagus\Figment\Http\Contract\DTO\Response;
@@ -25,7 +25,7 @@ readonly class Worker
      * @param InstanceList<Processor> $processors
      */
     public function __construct(
-        #[Instance('figment.http.processors')]
+        #[Inject('figment.http.processors')]
         private InstanceList $processors
     )
     {

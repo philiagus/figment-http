@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Philiagus\Figment\Http\Processor;
 
-use Philiagus\Figment\Container\Attribute\Instance;
+use Philiagus\Figment\Container\Attribute\Inject;
 use Philiagus\Figment\Container\Contract\InstanceList;
 use Philiagus\Figment\Container\EmptyInstanceList;
 use Philiagus\Figment\Http\Contract;
@@ -28,9 +28,9 @@ readonly class ApplyFiltersAndGates implements Contract\Processor
      * @param InstanceList<Contract\Gate> $gates
      */
     public function __construct(
-        #[Instance('figment.http.actions')] private InstanceList $actions,
-        #[Instance('figment.http.filters')] private InstanceList $filters = new EmptyInstanceList(),
-        #[Instance('figment.http.gates')] private InstanceList $gates = new EmptyInstanceList()
+        #[Inject('figment.http.actions')] private InstanceList $actions,
+        #[Inject('figment.http.filters')] private InstanceList $filters = new EmptyInstanceList(),
+        #[Inject('figment.http.gates')] private InstanceList   $gates = new EmptyInstanceList()
     )
     {
     }
